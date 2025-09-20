@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 
 # --- Load Multiple Excel Files ---
-files = ["dead_stock1.xlsx", "dead_stock2.xlsx", "dead_stock3.xlsx"]  # update file names
+files = ["hilal dead stock.xlsx", "hilal dead stock2.xlsx"]  # update file names
 dfs = [pd.read_excel(f) for f in files]
 df = pd.concat(dfs, ignore_index=True)
 
@@ -11,7 +11,7 @@ df = pd.concat(dfs, ignore_index=True)
 df.columns = df.columns.str.strip()
 
 # --- Ensure numeric fields ---
-for col in ["hilal dead stock.xlsx", "hilal dead stock2.xlsx"]:
+for col in ["Stock Value", "Stock", "Profit", "Margin%", "Total Sales", "Cost", "Selling", "LP Price"]:
     if col in df.columns:
         df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
 
@@ -20,7 +20,7 @@ df["Stock_clean"] = df["Stock"].clip(lower=0)
 
 # --- Dashboard Layout ---
 st.set_page_config(page_title="Dead Stock Dashboard", layout="wide")
-st.title("📊Hilal al madina Stock(Zero Sales and LP before 2025)")
+st.title("📊Safa Oud metha Stock(Zero Sales and LP before 2025)")
 
 # --- KPIs at Top ---
 col1, col2, col3, col4, col5 = st.columns(5)
